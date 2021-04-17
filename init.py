@@ -285,8 +285,10 @@ def assamble_project(folder_path, platform, action):
 		out.log(term.FAIL, f"fail loading metadata \n- {platform}")
 		exit()
 
+
 	replace(folder_path+"/Yelm.ProjectX/Yelm.ProjectX/extensions/color.swift", 'static var theme = Color.init(hex: "5DC837")', f'static var theme = Color.init(hex: "{theme}")')
 	replace(folder_path+"/Yelm.ProjectX/Yelm.ProjectX/extensions/variables.swift", 'var platform : String = "5fd33466e17963.29052139"', new_platform)
+	replace(folder_path+"/Yelm.ProjectX/Yelm.ProjectX/extensions/variables.swift", 'var distribution : Bool = false', 'var distribution : Bool = true')
 	replace(folder_path+"/Yelm.ProjectX/Yelm.ProjectX/Info.plist", 'Енот', name)
 	replace(folder_path+"/Yelm.ProjectX/Yelm.ProjectX/Info.plist", '<string>yelm.io.projects.Yelm-ProjectX</string>', f'<string>yelm.io.projects.{platform}</string>')
 	replace(folder_path+"/Yelm.ProjectX/Yelm.ProjectX/extensions/variables.swift", 'var merchant : String = "merchant.5fd33466e17963.29052139.yelm.io"', new_merchant)
