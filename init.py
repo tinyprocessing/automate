@@ -20,6 +20,7 @@ from os import fdopen, remove
 import subprocess
 
 from PIL import Image
+import time
 
 project = "https://github.com/Michaelsafir/Yelm.ProjectX.git"
 out = output()
@@ -242,6 +243,7 @@ def run_build(platform, action):
 
 
 
+
 	if (action == "load_screens"):
 		out.log(term.WARNING, "fastlane snapshot")
 
@@ -303,6 +305,17 @@ def assamble_project(folder_path, platform, action):
 		out.log(term.WARNING, "pod install")
 		for path in run("pod install", platform):
 			print(path.decode('utf-8'))
+
+	out.log(term.OKCYAN, "ready pods")
+	out.log(term.WARNING, "git clear")
+	for path in run("rm -rf .git", platform):
+		print(path.decode('utf-8'))
+
+	time.sleep(2)
+	out.log(term.OK, "init git")
+	for path in run("git init", platform):
+		print(path.decode('utf-8'))
+
 		exit()
 	run_build(platform, action)
 	pass
